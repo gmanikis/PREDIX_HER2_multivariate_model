@@ -1,0 +1,264 @@
+======================================================================
+PREDIX HER2 — CONSENSUS MODEL SUMMARY (dhp)
+======================================================================
+
+Per-modality consensus signatures (R2 protocol)
+----------------------------------------------------------------------
+
+  Clin
+    Winner classifier:     ElasticNet_LR
+    Classifier support:    47% of folds
+    Hyperparameters:       {'C': 0.1}
+    Signature size (K):    4
+    Signature features, ordered by the ranking key
+    (score = cluster-pooled mean percentile rank x selection
+     frequency; freq = fraction of folds selecting the feature
+     or a correlated cluster member; |imp| = mean raw importance
+     magnitude over the folds where it was selected):
+       1. Clin_ER                                  score = 0.8470  freq = 1.00  |imp| = 0.6652
+       2. Clin_ANYNODES                            score = 0.7932  freq = 1.00  |imp| = 0.4567
+       3. Clin_prolifvalu                          score = 0.4620  freq = 1.00  |imp| = 0.0377
+       4. Clin_TUMSIZE                             score = 0.3978  freq = 1.00  |imp| = 0.0171
+
+  RNA
+    Winner classifier:     ElasticNet_LR
+    Classifier support:    57% of folds
+    Hyperparameters:       {'C': 0.1}
+    Signature size (K):    5
+    Signature features, ordered by the ranking key
+    (score = cluster-pooled mean percentile rank x selection
+     frequency; freq = fraction of folds selecting the feature
+     or a correlated cluster member; |imp| = mean raw importance
+     magnitude over the folds where it was selected):
+       1. RNA_HER2DX_HER2_amplicon                 score = 0.9963  freq = 1.00  |imp| = 0.9623
+       2. RNA_pik3ca_sig                           score = 0.4540  freq = 0.81  |imp| = 0.2662
+       3. RNA_mRNA-ESR1                            score = 0.4317  freq = 0.82  |imp| = 0.2250
+       4. RNA_HER2DX_pCR_likelihood_score          score = 0.3942  freq = 0.90  |imp| = 0.1351
+       5. RNA_HER2DX_luminal                       score = 0.2951  freq = 0.70  |imp| = 0.1444
+
+  DNA
+    Winner classifier:     SVM_Linear
+    Classifier support:    25% of folds
+    Hyperparameters:       {'C': 0.1}
+    Signature size (K):    4
+    Signature features, ordered by the ranking key
+    (score = cluster-pooled mean percentile rank x selection
+     frequency; freq = fraction of folds selecting the feature
+     or a correlated cluster member; |imp| = mean raw importance
+     magnitude over the folds where it was selected):
+       1. DNA_ERBB2_CNA                            score = 0.6978  freq = 0.97  |imp| = 0.3190
+       2. DNA_COSMIC.Signature.13                  score = 0.4944  freq = 0.72  |imp| = 0.3207
+       3. DNA_coding_mutation_TP53                 score = 0.2464  freq = 0.53  |imp| = 0.3487
+       4. DNA_COSMIC.Signature.6                   score = 0.2331  freq = 0.50  |imp| = 0.1852
+
+  Prot
+    Winner classifier:     SVM_Linear
+    Classifier support:    52% of folds
+    Hyperparameters:       {'C': 0.1}
+    Signature size (K):    5
+    Signature features, ordered by the ranking key
+    (score = cluster-pooled mean percentile rank x selection
+     frequency; freq = fraction of folds selecting the feature
+     or a correlated cluster member; |imp| = mean raw importance
+     magnitude over the folds where it was selected):
+       1. Prot_ERBB2_PG                            score = 0.8605  freq = 0.99  |imp| = 0.6158
+       2. Prot_MIEN1                               score = 0.5719  freq = 0.89  |imp| = 0.1902
+       3. Prot_HER2_amplicon                       score = 0.4816  freq = 0.81  |imp| = 0.1368
+       4. Prot_RPL19                               score = 0.3979  freq = 0.73  |imp| = 0.2328
+       5. Prot_ERBB2                               score = 0.3898  freq = 0.75  |imp| = 0.1790
+
+  WSI
+    Winner classifier:     RandomForest
+    Classifier support:    54% of folds
+    Hyperparameters:       {'max_depth': None, 'min_samples_leaf': 1, 'n_estimators': 100}
+    Signature size (K):    3
+    Signature features, ordered by the ranking key
+    (score = cluster-pooled mean percentile rank x selection
+     frequency; freq = fraction of folds selecting the feature
+     or a correlated cluster member; |imp| = mean raw importance
+     magnitude over the folds where it was selected):
+       1. WSI_Immune_Cell_prop                     score = 0.7569  freq = 1.00  |imp| = 0.1923
+       2. WSI_Distance_tumor_immune                score = 0.6947  freq = 1.00  |imp| = 0.2325
+       3. WSI_Cell_Interaction                     score = 0.5484  freq = 1.00  |imp| = 0.1616
+
+Per-classifier final signatures (all families, all folds)
+----------------------------------------------------------------------
+  freq = fraction of that family's folds selecting the feature;
+  rank = mean within-fold importance percentile rank;
+  |imp| = mean raw importance magnitude when selected.
+  Stage A AUROC is an inner-CV diagnostic, NOT a performance
+  estimate — quote only the outer OOF numbers.
+
+  Clin
+    ElasticNet_LR    K= 4  won 236/500 folds  inner Stage A AUROC=0.639
+       1. Clin_ER                                  freq = 1.00  rank = 0.919  |imp| = 0.8570
+       2. Clin_ANYNODES                            freq = 1.00  rank = 0.831  |imp| = 0.6510
+       3. Clin_TUMSIZE                             freq = 1.00  rank = 0.499  |imp| = 0.0055
+       4. Clin_prolifvalu                          freq = 1.00  rank = 0.251  |imp| = 0.0007
+    SVM_Linear       K= 4  won 122/500 folds  inner Stage A AUROC=0.589
+       1. Clin_ER                                  freq = 1.00  rank = 0.964  |imp| = 0.9423
+       2. Clin_ANYNODES                            freq = 1.00  rank = 0.772  |imp| = 0.4925
+       3. Clin_prolifvalu                          freq = 1.00  rank = 0.416  |imp| = 0.0100
+       4. Clin_TUMSIZE                             freq = 1.00  rank = 0.347  |imp| = 0.0179
+    RandomForest     K= 4  won 72/500 folds  inner Stage A AUROC=0.593
+       1. Clin_prolifvalu                          freq = 1.00  rank = 0.962  |imp| = 0.1488
+       2. Clin_ANYNODES                            freq = 1.00  rank = 0.727  |imp| = 0.1203
+       3. Clin_ER                                  freq = 1.00  rank = 0.531  |imp| = 0.0945
+       4. Clin_TUMSIZE                             freq = 1.00  rank = 0.280  |imp| = 0.0638
+    HistGradBoost    K= 4  won 49/500 folds  inner Stage A AUROC=0.585
+       1. Clin_ER                                  freq = 1.00  rank = 0.846  |imp| = 0.0908
+       2. Clin_ANYNODES                            freq = 1.00  rank = 0.802  |imp| = 0.0858
+       3. Clin_prolifvalu                          freq = 1.00  rank = 0.602  |imp| = 0.0626
+       4. Clin_TUMSIZE                             freq = 1.00  rank = 0.250  |imp| = 0.0000
+    ExtraTrees       K= 4  won 21/500 folds  inner Stage A AUROC=0.562
+       1. Clin_prolifvalu                          freq = 1.00  rank = 0.992  |imp| = 0.1952
+       2. Clin_ANYNODES                            freq = 1.00  rank = 0.749  |imp| = 0.1549
+       3. Clin_ER                                  freq = 1.00  rank = 0.430  |imp| = 0.1051
+       4. Clin_TUMSIZE                             freq = 1.00  rank = 0.329  |imp| = 0.0945
+
+  RNA
+    ElasticNet_LR    K= 5  won 283/500 folds  inner Stage A AUROC=0.807
+       1. RNA_HER2DX_HER2_amplicon                 freq = 1.00  rank = 0.999  |imp| = 0.9991
+       2. RNA_pik3ca_sig                           freq = 0.92  rank = 0.567  |imp| = 0.2127
+       3. RNA_mRNA-ESR1                            freq = 0.92  rank = 0.536  |imp| = 0.2012
+       4. RNA_HER2DX_pCR_likelihood_score          freq = 0.91  rank = 0.434  |imp| = 0.0788
+       5. RNA_HER2DX_luminal                       freq = 0.77  rank = 0.437  |imp| = 0.1103
+    SVM_Linear       K= 5  won 197/500 folds  inner Stage A AUROC=0.803
+       1. RNA_HER2DX_HER2_amplicon                 freq = 1.00  rank = 0.994  |imp| = 0.9948
+       2. RNA_pik3ca_sig                           freq = 0.90  rank = 0.505  |imp| = 0.3343
+       3. RNA_mRNA-ESR1                            freq = 0.85  rank = 0.500  |imp| = 0.2949
+       4. RNA_HER2DX_pCR_likelihood_score          freq = 0.81  rank = 0.420  |imp| = 0.2287
+       5. RNA_HER2DX_luminal                       freq = 0.62  rank = 0.396  |imp| = 0.2141
+    ExtraTrees       K= 5  won 14/500 folds  inner Stage A AUROC=0.706
+       1. RNA_HER2DX_HER2_amplicon                 freq = 1.00  rank = 0.999  |imp| = 0.1334
+       2. RNA_HER2DX_pCR_likelihood_score          freq = 1.00  rank = 0.650  |imp| = 0.0862
+       3. RNA_mRNA-ESR1                            freq = 0.93  rank = 0.537  |imp| = 0.0732
+       4. RNA_pik3ca_sig                           freq = 0.80  rank = 0.417  |imp| = 0.0687
+       5. RNA_HER2DX_luminal                       freq = 0.78  rank = 0.413  |imp| = 0.0686
+    RandomForest     K= 5  won 4/500 folds  inner Stage A AUROC=0.686
+       1. RNA_HER2DX_HER2_amplicon                 freq = 1.00  rank = 0.994  |imp| = 0.1152
+       2. RNA_HER2DX_pCR_likelihood_score          freq = 0.98  rank = 0.523  |imp| = 0.0575
+       3. RNA_HER2DX_luminal                       freq = 0.88  rank = 0.527  |imp| = 0.0546
+       4. RNA_pik3ca_sig                           freq = 0.83  rank = 0.471  |imp| = 0.0513
+       5. RNA_mRNA-ESR1                            freq = 0.81  rank = 0.473  |imp| = 0.0521
+    HistGradBoost    K= 5  won 2/500 folds  inner Stage A AUROC=0.650
+       1. RNA_HER2DX_HER2_amplicon                 freq = 1.00  rank = 0.969  |imp| = 0.1897
+       2. RNA_mRNA-ESR1                            freq = 0.93  rank = 0.569  |imp| = 0.0961
+       3. RNA_HER2DX_pCR_likelihood_score          freq = 0.93  rank = 0.519  |imp| = 0.0861
+       4. RNA_HER2DX_luminal                       freq = 0.88  rank = 0.519  |imp| = 0.0846
+       5. RNA_pik3ca_sig                           freq = 0.80  rank = 0.427  |imp| = 0.0686
+
+  DNA
+    SVM_Linear       K= 5  won 125/500 folds  inner Stage A AUROC=0.665
+       1. DNA_ERBB2_CNA                            freq = 0.96  rank = 0.635  |imp| = 0.6277
+       2. DNA_COSMIC.Signature.13                  freq = 0.85  rank = 0.583  |imp| = 0.5935
+       3. DNA_coding_mutation_TP53                 freq = 0.77  rank = 0.515  |imp| = 0.5331
+       4. DNA_coding_mutation_TP53_oncokb          freq = 0.76  rank = 0.506  |imp| = 0.5585
+       5. DNA_COSMIC.Signature.6                   freq = 0.66  rank = 0.451  |imp| = 0.4539
+    RandomForest     K= 5  won 114/500 folds  inner Stage A AUROC=0.658
+       1. DNA_ERBB2_CNA                            freq = 0.98  rank = 0.769  |imp| = 0.0912
+       2. DNA_COSMIC.Signature.13                  freq = 0.89  rank = 0.622  |imp| = 0.0691
+       3. DNA_COSMIC.Signature.6                   freq = 0.69  rank = 0.452  |imp| = 0.0508
+       4. DNA_COSMIC.Signature.2                   freq = 0.54  rank = 0.413  |imp| = 0.0444
+       5. DNA_LOH_Del_burden                       freq = 0.52  rank = 0.403  |imp| = 0.0461
+    ExtraTrees       K= 5  won 97/500 folds  inner Stage A AUROC=0.648
+       1. DNA_ERBB2_CNA                            freq = 0.98  rank = 0.773  |imp| = 0.1181
+       2. DNA_COSMIC.Signature.13                  freq = 0.96  rank = 0.681  |imp| = 0.0990
+       3. DNA_COSMIC.Signature.6                   freq = 0.69  rank = 0.436  |imp| = 0.0682
+       4. DNA_COSMIC.Signature.2                   freq = 0.51  rank = 0.382  |imp| = 0.0600
+       5. DNA_LOH_Del_burden                       freq = 0.50  rank = 0.367  |imp| = 0.0623
+    ElasticNet_LR    K= 5  won 84/500 folds  inner Stage A AUROC=0.659
+       1. DNA_ERBB2_CNA                            freq = 0.96  rank = 0.645  |imp| = 0.6057
+       2. DNA_COSMIC.Signature.13                  freq = 0.89  rank = 0.657  |imp| = 0.6427
+       3. DNA_coding_mutation_TP53_oncokb          freq = 0.76  rank = 0.459  |imp| = 0.3808
+       4. DNA_coding_mutation_TP53                 freq = 0.70  rank = 0.447  |imp| = 0.3853
+       5. DNA_COSMIC.Signature.6                   freq = 0.59  rank = 0.418  |imp| = 0.3220
+    HistGradBoost    K= 5  won 80/500 folds  inner Stage A AUROC=0.643
+       1. DNA_ERBB2_CNA                            freq = 0.96  rank = 0.766  |imp| = 0.1203
+       2. DNA_COSMIC.Signature.13                  freq = 0.91  rank = 0.640  |imp| = 0.1051
+       3. DNA_COSMIC.Signature.6                   freq = 0.69  rank = 0.433  |imp| = 0.0694
+       4. DNA_coding_mutation_TP53                 freq = 0.60  rank = 0.377  |imp| = 0.0357
+       5. DNA_COSMIC.Signature.2                   freq = 0.52  rank = 0.383  |imp| = 0.0593
+
+  Prot
+    SVM_Linear       K= 5  won 261/500 folds  inner Stage A AUROC=0.835
+       1. Prot_ERBB2_PG                            freq = 1.00  rank = 0.957  |imp| = 0.9563
+       2. Prot_MIEN1                               freq = 0.85  rank = 0.560  |imp| = 0.2765
+       3. Prot_RPL19                               freq = 0.74  rank = 0.566  |imp| = 0.3442
+       4. Prot_ERBB2                               freq = 0.71  rank = 0.517  |imp| = 0.2571
+       5. Prot_CDK12                               freq = 0.64  rank = 0.577  |imp| = 0.3676
+    RandomForest     K= 5  won 133/500 folds  inner Stage A AUROC=0.819
+       1. Prot_HER2_amplicon                       freq = 1.00  rank = 0.750  |imp| = 0.0657
+       2. Prot_MIEN1                               freq = 0.98  rank = 0.762  |imp| = 0.0680
+       3. Prot_ERBB2_PG                            freq = 0.91  rank = 0.631  |imp| = 0.0605
+       4. Prot_ERBB2                               freq = 0.74  rank = 0.525  |imp| = 0.0521
+       5. Prot_RPL19                               freq = 0.69  rank = 0.555  |imp| = 0.0508
+    ExtraTrees       K= 5  won 63/500 folds  inner Stage A AUROC=0.805
+       1. Prot_ERBB2_PG                            freq = 1.00  rank = 0.975  |imp| = 0.1303
+       2. Prot_HER2_amplicon                       freq = 1.00  rank = 0.697  |imp| = 0.0751
+       3. Prot_MIEN1                               freq = 0.99  rank = 0.701  |imp| = 0.0770
+       4. Prot_ERBB2                               freq = 0.87  rank = 0.503  |imp| = 0.0635
+       5. Prot_RPL19                               freq = 0.54  rank = 0.466  |imp| = 0.0560
+    ElasticNet_LR    K= 5  won 40/500 folds  inner Stage A AUROC=0.803
+       1. Prot_ERBB2_PG                            freq = 1.00  rank = 0.956  |imp| = 0.9383
+       2. Prot_HER2_amplicon                       freq = 0.92  rank = 0.595  |imp| = 0.2428
+       3. Prot_ERBB2                               freq = 0.81  rank = 0.572  |imp| = 0.3148
+       4. Prot_MIEN1                               freq = 0.81  rank = 0.568  |imp| = 0.2653
+       5. Prot_RPL19                               freq = 0.77  rank = 0.555  |imp| = 0.3273
+    HistGradBoost    K= 5  won 3/500 folds  inner Stage A AUROC=0.734
+       1. Prot_ERBB2                               freq = 0.87  rank = 0.664  |imp| = 0.0967
+       2. Prot_MIEN1                               freq = 0.85  rank = 0.617  |imp| = 0.0780
+       3. Prot_HER2_amplicon                       freq = 0.77  rank = 0.579  |imp| = 0.0747
+       4. Prot_RPL19                               freq = 0.69  rank = 0.562  |imp| = 0.0713
+       5. Prot_GRB7                                freq = 0.55  rank = 0.558  |imp| = 0.0720
+
+  WSI
+    RandomForest     K= 3  won 271/500 folds  inner Stage A AUROC=0.661
+       1. WSI_Immune_Cell_prop                     freq = 1.00  rank = 0.737  |imp| = 0.1127
+       2. WSI_Distance_tumor_immune                freq = 1.00  rank = 0.669  |imp| = 0.1105
+       3. WSI_Cell_Interaction                     freq = 1.00  rank = 0.594  |imp| = 0.1076
+    ExtraTrees       K= 3  won 128/500 folds  inner Stage A AUROC=0.642
+       1. WSI_Immune_Cell_prop                     freq = 1.00  rank = 0.872  |imp| = 0.1704
+       2. WSI_Distance_tumor_immune                freq = 1.00  rank = 0.689  |imp| = 0.1628
+       3. WSI_Cell_Interaction                     freq = 1.00  rank = 0.440  |imp| = 0.1523
+    ElasticNet_LR    K= 3  won 61/500 folds  inner Stage A AUROC=0.603
+       1. WSI_Distance_tumor_immune                freq = 1.00  rank = 0.890  |imp| = 0.8694
+       2. WSI_Cell_Interaction                     freq = 1.00  rank = 0.582  |imp| = 0.3001
+       3. WSI_Immune_Cell_prop                     freq = 1.00  rank = 0.528  |imp| = 0.3417
+    SVM_Linear       K= 3  won 23/500 folds  inner Stage A AUROC=0.476
+       1. WSI_Immune_Cell_prop                     freq = 1.00  rank = 0.928  |imp| = 0.9358
+       2. WSI_Cell_Interaction                     freq = 1.00  rank = 0.607  |imp| = 0.5307
+       3. WSI_Distance_tumor_immune                freq = 1.00  rank = 0.465  |imp| = 0.4008
+    HistGradBoost    K= 3  won 17/500 folds  inner Stage A AUROC=0.538
+       1. WSI_Distance_tumor_immune                freq = 1.00  rank = 0.731  |imp| = 0.0765
+       2. WSI_Cell_Interaction                     freq = 1.00  rank = 0.682  |imp| = 0.0717
+       3. WSI_Immune_Cell_prop                     freq = 1.00  rank = 0.588  |imp| = 0.0619
+
+Frozen-consensus OOF performance
+----------------------------------------------------------------------
+
+  Model                    Pooled AUROC      Mean fold AUROC   Pooled AUPRC
+  Clin                           0.5618         0.6028 ± 0.179         0.4572
+  RNA                            0.7926         0.8062 ± 0.121         0.6802
+  DNA                            0.6405         0.6647 ± 0.153         0.5120
+  Prot                           0.7716         0.8302 ± 0.110         0.6091
+  WSI                            0.6173         0.6559 ± 0.162         0.5071
+  Fused_ElasticNet               0.7739         0.8115 ± 0.117         0.6292
+
+Notes
+----------------------------------------------------------------------
+  - Signatures are the top-K features by cluster-pooled mean cross-classifier
+    PERCENTILE RANK importance, weighted by selection frequency across the
+    discovery folds. Ranks — not raw SHAP magnitudes — are what make a linear
+    model's |coef| and a tree model's mean |SHAP| comparable enough to average
+    across classifiers. Raw magnitudes are reported in the |imp| column above
+    but are not the ranking key.
+  - K = median per-fold signature size from the winner-classifier folds.
+  - Consensus choices (signature + classifier identity + hyperparameters) are FROZEN.
+  - Classifier weights and fusion coefficients ARE REFIT within each CV fold,
+    using only that fold's training data — no test-fold leakage.
+  - The consensus signature was chosen with knowledge of all complete-case
+    outcomes, so it carries selection optimism that this re-evaluation does not
+    remove. Only the weight-estimation and fusion steps are honest here.
+  - Report the pooled out-of-fold AUROC with a PATIENT-LEVEL bootstrap interval
+    (revision_analyses.py), not the standard deviation of per-fold AUROC.

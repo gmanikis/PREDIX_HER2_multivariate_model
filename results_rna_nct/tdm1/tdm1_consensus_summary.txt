@@ -1,0 +1,87 @@
+======================================================================
+PREDIX HER2 — CONSENSUS MODEL SUMMARY (tdm1)
+======================================================================
+
+Per-modality consensus signatures (R2 protocol)
+----------------------------------------------------------------------
+
+  RNA
+    Winner classifier:     SVM_Linear
+    Classifier support:    44% of folds
+    Hyperparameters:       {'C': 0.1}
+    Signature size (K):    5
+    Signature features, ordered by the ranking key
+    (score = cluster-pooled mean percentile rank x selection
+     frequency; freq = fraction of folds selecting the feature
+     or a correlated cluster member; |imp| = mean raw importance
+     magnitude over the folds where it was selected):
+       1. RNA_Exosome                              score = 0.5245  freq = 0.81  |imp| = 0.2800
+       2. RNA_ADC_trafficking                      score = 0.5150  freq = 0.83  |imp| = 0.3528
+       3. RNA_mRNA-ESR1                            score = 0.4867  freq = 0.85  |imp| = 0.3149
+       4. RNA_FCGR3B                               score = 0.4859  freq = 0.77  |imp| = 0.4104
+       5. RNA_Mast-cells                           score = 0.3817  freq = 0.66  |imp| = 0.3421
+
+Per-classifier final signatures (all families, all folds)
+----------------------------------------------------------------------
+  freq = fraction of that family's folds selecting the feature;
+  rank = mean within-fold importance percentile rank;
+  |imp| = mean raw importance magnitude when selected.
+  Stage A AUROC is an inner-CV diagnostic, NOT a performance
+  estimate — quote only the outer OOF numbers.
+
+  RNA
+    SVM_Linear       K= 5  won 222/500 folds  inner Stage A AUROC=0.767
+       1. RNA_ADC_trafficking                      freq = 0.85  rank = 0.632  |imp| = 0.6319
+       2. RNA_FCGR3B                               freq = 0.80  rank = 0.657  |imp| = 0.6581
+       3. RNA_mRNA-ESR1                            freq = 0.73  rank = 0.528  |imp| = 0.5278
+       4. RNA_Exosome                              freq = 0.71  rank = 0.556  |imp| = 0.5539
+       5. RNA_Mast-cells                           freq = 0.71  rank = 0.589  |imp| = 0.5861
+    RandomForest     K= 5  won 107/500 folds  inner Stage A AUROC=0.752
+       1. RNA_Exosome                              freq = 0.97  rank = 0.728  |imp| = 0.0726
+       2. RNA_mRNA-ESR1                            freq = 0.94  rank = 0.609  |imp| = 0.0586
+       3. RNA_ADC_trafficking                      freq = 0.83  rank = 0.594  |imp| = 0.0549
+       4. RNA_FCGR3B                               freq = 0.69  rank = 0.588  |imp| = 0.0541
+       5. RNA_Mast-cells                           freq = 0.62  rank = 0.541  |imp| = 0.0507
+    ExtraTrees       K= 5  won 78/500 folds  inner Stage A AUROC=0.745
+       1. RNA_mRNA-ESR1                            freq = 0.94  rank = 0.635  |imp| = 0.0703
+       2. RNA_ADC_trafficking                      freq = 0.86  rank = 0.634  |imp| = 0.0652
+       3. RNA_Exosome                              freq = 0.81  rank = 0.603  |imp| = 0.0691
+       4. RNA_FCGR3B                               freq = 0.70  rank = 0.585  |imp| = 0.0621
+       5. RNA_Mast-cells                           freq = 0.69  rank = 0.582  |imp| = 0.0617
+    HistGradBoost    K= 5  won 50/500 folds  inner Stage A AUROC=0.727
+       1. RNA_Exosome                              freq = 0.95  rank = 0.719  |imp| = 0.1239
+       2. RNA_FCGR3B                               freq = 0.77  rank = 0.625  |imp| = 0.1069
+       3. RNA_mRNA-ESR1                            freq = 0.73  rank = 0.548  |imp| = 0.0851
+       4. RNA_ADC_trafficking                      freq = 0.68  rank = 0.528  |imp| = 0.0802
+       5. RNA_Mast-cells                           freq = 0.60  rank = 0.540  |imp| = 0.0851
+    ElasticNet_LR    K= 5  won 43/500 folds  inner Stage A AUROC=0.741
+       1. RNA_mRNA-ESR1                            freq = 0.95  rank = 0.667  |imp| = 0.5440
+       2. RNA_ADC_trafficking                      freq = 0.88  rank = 0.649  |imp| = 0.5468
+       3. RNA_FCGR3B                               freq = 0.79  rank = 0.636  |imp| = 0.5329
+       4. RNA_Exosome                              freq = 0.65  rank = 0.546  |imp| = 0.3934
+       5. RNA_Mast-cells                           freq = 0.64  rank = 0.550  |imp| = 0.3932
+
+Frozen-consensus OOF performance
+----------------------------------------------------------------------
+
+  Model                    Pooled AUROC      Mean fold AUROC   Pooled AUPRC
+  RNA                            0.7856         0.8091 ± 0.096         0.6948
+  Fused_ElasticNet               0.7706         0.8082 ± 0.097         0.6674
+
+Notes
+----------------------------------------------------------------------
+  - Signatures are the top-K features by cluster-pooled mean cross-classifier
+    PERCENTILE RANK importance, weighted by selection frequency across the
+    discovery folds. Ranks — not raw SHAP magnitudes — are what make a linear
+    model's |coef| and a tree model's mean |SHAP| comparable enough to average
+    across classifiers. Raw magnitudes are reported in the |imp| column above
+    but are not the ranking key.
+  - K = median per-fold signature size from the winner-classifier folds.
+  - Consensus choices (signature + classifier identity + hyperparameters) are FROZEN.
+  - Classifier weights and fusion coefficients ARE REFIT within each CV fold,
+    using only that fold's training data — no test-fold leakage.
+  - The consensus signature was chosen with knowledge of all complete-case
+    outcomes, so it carries selection optimism that this re-evaluation does not
+    remove. Only the weight-estimation and fusion steps are honest here.
+  - Report the pooled out-of-fold AUROC with a PATIENT-LEVEL bootstrap interval
+    (revision_analyses.py), not the standard deviation of per-fold AUROC.
