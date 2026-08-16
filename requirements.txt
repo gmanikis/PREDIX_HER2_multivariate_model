@@ -1,0 +1,31 @@
+# PREDIX HER2 multimodal pCR pipeline — dependencies
+#
+# Lower bounds, not exact pins. The published results were produced with the
+# versions listed in the right-hand comments; the pipeline has since been run
+# and verified end to end on Python 3.14 with current releases, and results are
+# stable across that range.
+#
+# Install:
+#   python -m venv predix_env
+#   source predix_env/bin/activate        # Windows: predix_env\Scripts\activate
+#   pip install -r requirements.txt
+
+numpy>=2.0            # published run: 2.2.0
+pandas>=2.2           # published run: 2.2.3
+scikit-learn>=1.6     # published run: 1.6.1
+scipy>=1.14           # published run: 1.14.1
+matplotlib>=3.9       # published run: 3.9.4
+openpyxl>=3.1         # published run: 3.1.5
+joblib>=1.4
+threadpoolctl>=3.5
+
+# shap 0.46 predates Python 3.14 support. On 3.14 install shap>=0.52; on
+# Python 3.10-3.13 either works and gives identical SHAP values.
+shap>=0.46            # published run: 0.46.0 (use >=0.52 on Python 3.14)
+
+# Deliberately NOT required: statsmodels and lifelines. The logistic and Cox
+# models, the likelihood-ratio test, the log-rank test and the Kaplan-Meier
+# estimator used in revision_analyses.py are implemented directly against numpy
+# and scipy, so the repository has no dependency a reviewer cannot install from
+# a bare environment. Both implementations are validated against reference
+# results in the test suite.
