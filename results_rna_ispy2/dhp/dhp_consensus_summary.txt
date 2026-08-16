@@ -1,0 +1,87 @@
+======================================================================
+PREDIX HER2 — CONSENSUS MODEL SUMMARY (dhp)
+======================================================================
+
+Per-modality consensus signatures (R2 protocol)
+----------------------------------------------------------------------
+
+  RNA
+    Winner classifier:     ElasticNet_LR
+    Classifier support:    54% of folds
+    Hyperparameters:       {'C': 0.1}
+    Signature size (K):    5
+    Signature features, ordered by the ranking key
+    (score = cluster-pooled mean percentile rank x selection
+     frequency; freq = fraction of folds selecting the feature
+     or a correlated cluster member; |imp| = mean raw importance
+     magnitude over the folds where it was selected):
+       1. RNA_HER2DX_HER2_amplicon                 score = 0.9747  freq = 1.00  |imp| = 0.9184
+       2. RNA_HER2DX_pCR_likelihood_score          score = 0.4889  freq = 0.90  |imp| = 0.2345
+       3. RNA_HER2DX_luminal                       score = 0.3287  freq = 0.72  |imp| = 0.2365
+       4. RNA_mRNA-ESR1                            score = 0.2380  freq = 0.52  |imp| = 0.2573
+       5. RNA_pik3ca_sig                           score = 0.1465  freq = 0.35  |imp| = 0.1998
+
+Per-classifier final signatures (all families, all folds)
+----------------------------------------------------------------------
+  freq = fraction of that family's folds selecting the feature;
+  rank = mean within-fold importance percentile rank;
+  |imp| = mean raw importance magnitude when selected.
+  Stage A AUROC is an inner-CV diagnostic, NOT a performance
+  estimate — quote only the outer OOF numbers.
+
+  RNA
+    ElasticNet_LR    K= 5  won 269/500 folds  inner Stage A AUROC=0.758
+       1. RNA_HER2DX_HER2_amplicon                 freq = 1.00  rank = 0.980  |imp| = 0.9709
+       2. RNA_HER2DX_pCR_likelihood_score          freq = 1.00  rank = 0.614  |imp| = 0.2471
+       3. RNA_HER2DX_luminal                       freq = 0.74  rank = 0.442  |imp| = 0.1592
+       4. RNA_mRNA-ESR1                            freq = 0.54  rank = 0.419  |imp| = 0.1910
+       5. RNA_pik3ca_sig                           freq = 0.44  rank = 0.401  |imp| = 0.1411
+    SVM_Linear       K= 5  won 198/500 folds  inner Stage A AUROC=0.753
+       1. RNA_HER2DX_HER2_amplicon                 freq = 1.00  rank = 0.963  |imp| = 0.9652
+       2. RNA_HER2DX_pCR_likelihood_score          freq = 0.76  rank = 0.418  |imp| = 0.2773
+       3. RNA_HER2DX_luminal                       freq = 0.74  rank = 0.478  |imp| = 0.3611
+       4. RNA_mRNA-ESR1                            freq = 0.64  rank = 0.466  |imp| = 0.3527
+       5. RNA_pik3ca_sig                           freq = 0.35  rank = 0.405  |imp| = 0.2943
+    ExtraTrees       K= 5  won 22/500 folds  inner Stage A AUROC=0.687
+       1. RNA_HER2DX_HER2_amplicon                 freq = 1.00  rank = 0.972  |imp| = 0.1289
+       2. RNA_HER2DX_pCR_likelihood_score          freq = 1.00  rank = 0.652  |imp| = 0.0826
+       3. RNA_HER2DX_luminal                       freq = 0.66  rank = 0.411  |imp| = 0.0589
+       4. RNA_mRNA-ESR1                            freq = 0.60  rank = 0.445  |imp| = 0.0576
+       5. RNA_mRNA-PGR                             freq = 0.40  rank = 0.413  |imp| = 0.0450
+    RandomForest     K= 5  won 7/500 folds  inner Stage A AUROC=0.682
+       1. RNA_HER2DX_HER2_amplicon                 freq = 1.00  rank = 0.935  |imp| = 0.1059
+       2. RNA_HER2DX_pCR_likelihood_score          freq = 0.99  rank = 0.591  |imp| = 0.0605
+       3. RNA_HER2DX_luminal                       freq = 0.66  rank = 0.450  |imp| = 0.0457
+       4. RNA_mRNA-ESR1                            freq = 0.53  rank = 0.427  |imp| = 0.0435
+       5. RNA_mRNA-PGR                             freq = 0.40  rank = 0.435  |imp| = 0.0383
+    HistGradBoost    K= 5  won 4/500 folds  inner Stage A AUROC=0.671
+       1. RNA_HER2DX_HER2_amplicon                 freq = 1.00  rank = 0.897  |imp| = 0.1652
+       2. RNA_HER2DX_pCR_likelihood_score          freq = 0.84  rank = 0.512  |imp| = 0.0734
+       3. RNA_HER2DX_luminal                       freq = 0.69  rank = 0.476  |imp| = 0.0692
+       4. RNA_mRNA-ESR1                            freq = 0.67  rank = 0.469  |imp| = 0.0717
+       5. RNA_Th2 cells                            freq = 0.39  rank = 0.444  |imp| = 0.0629
+
+Frozen-consensus OOF performance
+----------------------------------------------------------------------
+
+  Model                    Pooled AUROC      Mean fold AUROC   Pooled AUPRC
+  RNA                            0.7479         0.7656 ± 0.097         0.6925
+  Fused_ElasticNet               0.7269         0.7656 ± 0.097         0.6602
+
+Notes
+----------------------------------------------------------------------
+  - Signatures are the top-K features by cluster-pooled mean cross-classifier
+    PERCENTILE RANK importance, weighted by selection frequency across the
+    discovery folds. Ranks — not raw SHAP magnitudes — are what make a linear
+    model's |coef| and a tree model's mean |SHAP| comparable enough to average
+    across classifiers. Raw magnitudes are reported in the |imp| column above
+    but are not the ranking key.
+  - K = median per-fold signature size from the winner-classifier folds.
+  - Consensus choices (signature + classifier identity + hyperparameters) are FROZEN.
+  - Classifier weights and fusion coefficients ARE REFIT within each CV fold,
+    using only that fold's training data — no test-fold leakage.
+  - The consensus signature was chosen with knowledge of all complete-case
+    outcomes, so it carries selection optimism that this re-evaluation does not
+    remove. Only the weight-estimation and fusion steps are honest here.
+  - Report the pooled out-of-fold AUROC with a PATIENT-LEVEL bootstrap interval
+    (revision_analyses.py), not the standard deviation of per-fold AUROC.
