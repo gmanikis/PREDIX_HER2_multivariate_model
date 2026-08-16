@@ -39,7 +39,7 @@ Pipeline `2.0.0-revision1`, seed 42. Regenerated 2026-08-16.
 | Consensus finalisation | features above the stability threshold (0.6 pooled, 0.5 per arm); modal classifier |
 | Random seed | 42 |
 
-The full design is stated in [`docs/methods_cv_statement.txt`](docs/methods_cv_statement.txt), both generated from the run's own parameters.
+The full design is stated in [`docs/methods_cv_statement.txt`](docs/methods_cv_statement.txt), generated from the run's own parameters.
 
 ## 2. Cross-validated performance
 
