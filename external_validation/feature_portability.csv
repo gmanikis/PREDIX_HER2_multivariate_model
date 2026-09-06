@@ -1,0 +1,19 @@
+signature,external_cohort,feature,PREDIX_population,n_PREDIX,n_external,AUROC_PREDIX,AUROC_external,delta_from_0.5_PREDIX,delta_from_0.5_external,direction_flips,rho_with_ESR1_PREDIX,rho_with_ESR1_external,delta_rho
+DHP transcriptomic,I-SPY2,RNA_HER2DX_HER2_amplicon,complete-case arm cohort,59,44,0.821,0.754,0.321,0.254,False,-0.518,-0.336,0.182
+DHP transcriptomic,I-SPY2,RNA_Th2 cells,complete-case arm cohort,59,44,0.767,0.598,0.267,0.098,False,-0.063,-0.13,0.068
+DHP transcriptomic,I-SPY2,RNA_HER2DX_luminal,complete-case arm cohort,59,44,0.279,0.274,-0.221,-0.226,False,0.89,0.885,0.005
+DHP transcriptomic,I-SPY2,RNA_Treg,complete-case arm cohort,59,44,0.681,0.547,0.181,0.047,False,-0.147,-0.154,0.007
+DHP transcriptomic,I-SPY2,RNA_Fatty_acid_metabolism,complete-case arm cohort,59,44,0.335,0.325,-0.165,-0.175,False,0.059,0.237,0.178
+DHP transcriptomic,TransNEO,RNA_HER2DX_HER2_amplicon,complete-case arm cohort,59,60,0.821,0.643,0.321,0.143,False,-0.518,-0.219,0.299
+DHP transcriptomic,TransNEO,RNA_Th2 cells,complete-case arm cohort,59,60,0.767,0.496,0.267,-0.004,True,-0.063,0.248,0.311
+DHP transcriptomic,TransNEO,RNA_HER2DX_luminal,complete-case arm cohort,59,60,0.279,0.377,-0.221,-0.123,False,0.89,0.849,0.041
+DHP transcriptomic,TransNEO,RNA_Treg,complete-case arm cohort,59,60,0.681,0.701,0.181,0.201,False,-0.147,-0.139,0.008
+DHP transcriptomic,TransNEO,RNA_Fatty_acid_metabolism,complete-case arm cohort,59,60,0.335,0.565,-0.165,0.065,True,0.059,-0.17,0.229
+T-DM1 transcriptomic,NCT02326974,RNA_mRNA-PGR,complete-case arm cohort,51,129,0.179,0.409,-0.321,-0.091,False,0.559,0.18,0.379
+T-DM1 transcriptomic,NCT02326974,RNA_HER2DX_luminal,complete-case arm cohort,51,129,0.235,0.34,-0.265,-0.16,False,0.851,0.472,0.379
+T-DM1 transcriptomic,NCT02326974,RNA_HER2DX_HER2_amplicon,complete-case arm cohort,51,129,0.745,0.704,0.245,0.204,False,-0.442,-0.014,0.428
+T-DM1 transcriptomic,NCT02326974,RNA_Exosome,complete-case arm cohort,51,129,0.705,0.619,0.205,0.119,False,-0.49,-0.041,0.449
+DHP genomic,TransNEO,DNA_ERBB2_CNA,complete-case arm cohort,59,59,0.769,0.429,0.269,-0.071,True,-0.303,,
+DHP genomic,TransNEO,DNA_HRD,complete-case arm cohort,59,59,0.644,,0.144,,,0.132,,
+DHP genomic,TransNEO,DNA_NCOR1_CNA,complete-case arm cohort,59,59,0.338,,-0.162,,,-0.141,,
+DHP genomic,TransNEO,DNA_COSMIC.Signature.2,complete-case arm cohort,59,59,0.63,,0.13,,,-0.276,,
