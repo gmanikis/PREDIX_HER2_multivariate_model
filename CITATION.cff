@@ -1,0 +1,45 @@
+cff-version: 1.2.0
+message: >-
+  If you use this code or these results, please cite the article below. THIS
+  RECORD IS NOT YET COMPLETE: every value beginning '[AUTHOR NOTE' is a
+  placeholder the authors must replace, so this file does not yet identify a
+  citable article (6 outstanding: article_authors, article_doi,
+  article_title, article_year, repository_code, software_authors).
+title: "PREDIX HER2 — multimodal prediction of pathological complete response"
+abstract: >-
+  Analysis code, deposited cross-validation artefacts and a verification
+  notebook for the multimodal (clinical, transcriptomic, genomic, proteomic and
+  whole-slide-image) prediction of pathological complete response in the
+  PREDIX HER2 randomised trial. This is the no-patient-data variant of the
+  deposit: the trial's individual-level input matrix is not included, pending
+  the decision on releasing individual-level data. What individual-level
+  information the deposited cross-validation artefacts still carry is set out
+  in docs/NO_PATIENT_DATA.md.
+type: software
+authors:
+  - family-names: "[AUTHOR NOTE: add the author list, in the article's order]"
+    given-names: ""
+repository-code: "[AUTHOR NOTE: add the GitHub URL after the first push]"
+# MIT applies to the SOFTWARE ONLY. CITATION.cff has one licence field and no
+# way to express that, so the scope notice in LICENSE governs — see it before
+# reusing anything under results/ or report/.
+license: "MIT"
+version: "2.0.0-revision1+nodata"
+date-released: "2026-09-06"
+keywords:
+  - breast cancer
+  - HER2
+  - multimodal machine learning
+  - pathological complete response
+  - cross-validation
+preferred-citation:
+  type: article
+  title: "[AUTHOR NOTE: article title]"
+  journal: "Nature Cancer"
+  # Quoted on purpose. Unquoted, the bracket would make this a YAML sequence
+  # rather than a placeholder, and the file would not parse as a citation record.
+  year: "[AUTHOR NOTE: year]"
+  doi: "[AUTHOR NOTE: DOI once assigned]"
+  authors:
+    - family-names: "[AUTHOR NOTE: add the article's author list]"
+      given-names: ""

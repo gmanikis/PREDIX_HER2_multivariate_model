@@ -1,0 +1,74 @@
+MIT License — SOFTWARE ONLY. See the scope notice below.
+
+Copyright (c) 2026 The PREDIX HER2 study authors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+===========================================================================
+SCOPE — WHAT THIS LICENCE DOES AND DOES NOT COVER
+===========================================================================
+
+COVERED (the "Software"): everything under code/, supplementary/, docs/ and
+external_validation/code/, plus the notebook and the build and verification
+scripts. Reuse these freely under the MIT terms above.
+
+NOT COVERED: patient-derived material. The PREDIX HER2 trial data and every
+artefact derived from it remain under the trial's own governance and the
+consent given by its participants. That includes any input matrix under data/,
+and it includes results/, report/ and report figures and tables, because those
+carry individual-level information: per-patient fold membership, treatment arm,
+the pCR outcome, predicted probabilities, and within-fold standardised values
+of most curated metrics. Read docs/NO_PATIENT_DATA.md, which quantifies exactly what individual-level
+information remains once the input matrix is withheld.
+
+Nothing in the MIT grant above conveys any right to redistribute, publish or
+re-identify patient-derived material, and no such right is implied by that
+material appearing in this repository. Requests should go to the study's data
+controller.
+
+THIRD-PARTY DATA: the external cohort files under data/ are derived metrics
+computed from public GEO series (I-SPY2, GSE194040; NCT02326974, GSE243375).
+They carry the terms of those original studies and should be attributed to
+them, and so do the artefacts derived from them — the per-cohort tables
+under external_validation/, which
+hold a predicted probability and an outcome for each of those cohorts'
+patients. They are patient-derived too, and the MIT grant does not reach them
+either. The TransNEO metrics used in external_validation/ are NOT redistributed
+here for that reason.
+
+Licence text generated 2026-09-06.
+
+===========================================================================
+THIS IS THE NO-PATIENT-DATA VARIANT
+===========================================================================
+
+The PREDIX individual-level input matrix (`data/clin_multiomics_curated_metrics_PREDIX_HER2_new.txt`,
+197 patients) is deliberately NOT deposited here, because
+whether the trial's ethics approval and participant consent permit its public
+release is a question for the study's data controller, not a build step.
+
+Removing it removed the trial's `patientID` values. **It did not remove the
+individual-level information.** The deposited cross-validation artefacts under
+results/ still carry, per patient, the pCR outcome, thousands of predicted
+probabilities, fold membership, treatment arm, and the within-fold standardised
+values of most curated metrics. docs/NO_PATIENT_DATA.md quantifies exactly what
+remains. Read it before treating this tree as anonymous — it is not.
+
+The MIT grant above covers the software only and conveys no rights over any of
+that material.
